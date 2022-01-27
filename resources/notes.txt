@@ -1,0 +1,98 @@
+Активация виртуального окружения:
+.\venv\scripts\activate
+
+Получение файла зависимостей:
+pip freeze > requirements.txt
+
+Установка зависимстей:
+pip install -r requirements.txt
+
+1. запуск приложения через uvicorn:
+	1) из комадной строки:
+PYTHONPATH=src uvicorn demo.app:app
+
+	2) их PyCharm:
+
+	в модуле demo создать файл __main__ с кодом:
+
+if __name__ == '__main__':
+    import uvicorn
+
+    uvicorn.run("demo.app:app")
+
+	в PyCharm настройка:
+- module name: demo
+- working directory: корень проекта
+
+
+
+2. значение по умолчанию:
+@app.post('/greet')
+def greet(name: str = Body(...)):
+    return Response(f'Hello, {name}!')
+
+... - означает, что настоящего значения нет, но оно должно быть получено из Body. Своеобразная заглушка, т.е. тип значения по шаблону.
+
+
+
+3. библиотека dynaconf
+служит для управления настройками приложения
+
+dynaconf init	-	инициализация
+
+
+
+4. создание сессии и подключение к базе данных
+
+from .config import settings
+
+
+@event.listens_for(Engine, 'connect')
+def enable_foreign_keys(dbapi_connection, connection_record):
+    cursor = dbapi_connection.cursor()
+    cursor.execute('PRAGMA foreign_keys=ON')
+    cursor.close()
+
+
+engine = create_engine(
+    settings.database_url,
+    future=True,
+    connect_args={'check_same_thread': False},
+)
+
+Session = sessionmaker(engine, future=True)
+Base = declarative_base()
+
+
+
+5. библиотека alembic
+миграции баз данных
+
+alembic init alembic	-	ицициализация alembic в папке alembic
+
+	1) в файле alembic.ini:
+"""
+file_template = %%(year)d_%%(month).2d_%%(day).2d_%%(hour).2d_%%(minute).2d_%%(second).2d_%%(rev)s_%%(slug)s	-	настройка имени файла миграции
+
+# sqlalchemy.url = driver://user:pass@localhost/dbname	-	закомментировать путь базе данных. он будет прописан в файле env.py.
+"""
+
+	2) в файле env.py:
+"""
+from demo.database import Base
+target_metadata = Base.metadata
+
+from demo.config import settings
+config.set_main_option('sqlalchemy.url', settings.database_url)
+"""
+
+	консольная команда:
+alembic revision --autogenerate -m "Create 'accounts' table"	-	создание миграции
+alembic upgrade head	-	применение миграции
+alembic downgrade head	-	откат к миграции
+
+
+
+6. библиотека pytest
+тестирование
+
