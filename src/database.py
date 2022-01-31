@@ -31,3 +31,5 @@ def get_session() -> Session:
 
 
 from .accounts.models import Account  # noqa
+from .tasks.models import Task  # noqa
+from .tasks.models import TimeLog  # noqa
