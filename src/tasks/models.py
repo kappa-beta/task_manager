@@ -9,8 +9,8 @@ class Task(Base):
     id = Column(Integer, primary_key=True)
     header = Column(String, nullable=False)
     description = Column(String)
-    plan_start = Column(Date, nullable=False)
-    plan_end = Column(Date, nullable=False)
+    plan_start = Column(Date)
+    plan_end = Column(Date)
     executors = Column(String)
 
 

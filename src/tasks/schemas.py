@@ -1,27 +1,27 @@
 from typing import Optional
 
-from fastapi import UploadFile
 from pydantic import BaseModel
 
 
 class Task(BaseModel):
     id: int
     header: str
-    description: str
-    first_name: Optional[str]
-    last_name: Optional[str]
-    avatar: Optional[str]
+    description: Optional[str]
+    plan_start: Optional[str]
+    plan_end: Optional[str]
+    executors: Optional[str]
 
     class Config:
         orm_mode = True
 
 
 class TaskCreate(BaseModel):
-    email: str
-    username: str
-    password: str
+    header: str
 
 
 class TaskUpdate(BaseModel):
-    first_name: Optional[str] = None
-    last_name: Optional[str] = None
+    header: Optional[str] = None
+    description: Optional[str] = None
+    plan_start: Optional[str] = None
+    plan_end: Optional[str] = None
+    executors: Optional[str] = None

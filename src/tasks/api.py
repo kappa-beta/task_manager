@@ -23,7 +23,7 @@ def create_task(
         service: TaskService = Depends(),
 ):
     try:
-        account = service.create_task(task_create)
+        task = service.create_task(task_create)
     except EntityConflictError:
         raise HTTPException(status.HTTP_409_CONFLICT) from None
-    return account
+    return task
