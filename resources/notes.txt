@@ -87,7 +87,7 @@ config.set_main_option('sqlalchemy.url', settings.database_url)
 """
 
 	консольная команда:
-alembic revision --autogenerate -m "Create 'accounts' table"	-	создание миграции
+alembic revision --autogenerate -m "Update 'tasks' table"	-	создание миграции
 alembic upgrade head	-	применение миграции
 alembic downgrade head	-	откат к миграции
 
