@@ -17,6 +17,10 @@ class Task(BaseModel):
 
 class TaskCreate(BaseModel):
     header: str
+    description: Optional[str] = None
+    plan_start: Optional[str] = None
+    plan_end: Optional[str] = None
+    executors: Optional[str] = None
 
 
 class TaskUpdate(BaseModel):

@@ -16,6 +16,10 @@ class TaskService:
     def create_task(self, task_create: TaskCreate):
         task = Task(
             header=task_create.header,
+            description=task_create.description,
+            plan_start=task_create.plan_start,
+            plan_end=task_create.plan_end,
+            executors=task_create.executors,
         )
         self.session.add(task)
         try:
