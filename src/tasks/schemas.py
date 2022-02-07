@@ -1,4 +1,5 @@
 from typing import Optional
+from datetime import date
 
 from pydantic import BaseModel
 
@@ -7,8 +8,8 @@ class Task(BaseModel):
     id: int
     header: str
     description: Optional[str]
-    plan_start: Optional[str]
-    plan_end: Optional[str]
+    plan_start: Optional[date]
+    plan_end: Optional[date]
     executors: Optional[str]
 
     class Config:
@@ -18,14 +19,14 @@ class Task(BaseModel):
 class TaskCreate(BaseModel):
     header: str
     description: Optional[str] = None
-    plan_start: Optional[str] = None
-    plan_end: Optional[str] = None
+    plan_start: Optional[date] = None
+    plan_end: Optional[date] = None
     executors: Optional[str] = None
 
 
 class TaskUpdate(BaseModel):
     header: Optional[str] = None
     description: Optional[str] = None
-    plan_start: Optional[str] = None
-    plan_end: Optional[str] = None
+    plan_start: Optional[date] = None
+    plan_end: Optional[date] = None
     executors: Optional[str] = None
