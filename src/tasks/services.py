@@ -5,8 +5,8 @@ from sqlalchemy.exc import IntegrityError, NoResultFound
 from src.config import get_settings
 from src.database import get_session
 from src.exceptions import EntityConflictError, EntityDoesNotExistError
-from src.tasks.models import Task
-from src.tasks.schemas import TaskCreate, TaskUpdate
+from src.tasks.models import Task, TimeLog
+from src.tasks.schemas import TaskCreate, TaskUpdate, TimeLogCreate
 
 
 class TaskService:
@@ -40,7 +40,12 @@ class TaskService:
 
     def update_task(self, task_id: int, task_update: TaskUpdate):
         task = self._get_task(task_id)
-        for k, v in task_update.dict(exclude_unset=True):
+        # a = task_update.dict()
+        # print(a)
+        # b = getattr(task, 'header')
+        # print(b)
+        # print(task)
+        for k, v in task_update.dict(exclude_unset=True).items():
             setattr(task, k, v)
 
         self.session.commit()
@@ -55,3 +60,16 @@ class TaskService:
             return task
         except NoResultFound:
             raise EntityDoesNotExistError from None
+
+
+class TimeLogService:
+    def __init__(self, session=Depends(get_session), settings=Depends(get_settings)):
+        self.session = session
+        self.settings = settings
+
+    def create_time_log(self, create_time_log: TimeLogCreate):
+        timelog = TimeLog(
+            time_log_id=create_time_log.time_log_id,
+            start=create_time_log.start,
+            end=create_time_log.end,
+        )

@@ -30,3 +30,16 @@ class TaskUpdate(BaseModel):
     plan_start: Optional[date] = None
     plan_end: Optional[date] = None
     executors: Optional[str] = None
+
+
+class TimeLog(BaseModel):
+    id: int
+    time_log_id: int
+    start: date
+    end: date
+
+
+class TimeLogCreate(BaseModel):
+    time_log_id: int
+    start: date
+    end: date

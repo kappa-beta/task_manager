@@ -19,5 +19,5 @@ class TimeLog(Base):
 
     id = Column(Integer, primary_key=True)
     time_log_id = Column(Integer, ForeignKey('tasks.id'), nullable=False)
-    start = Column(Date)
-    end = Column(Date)
+    start = Column(Date, nullable=False)
+    end = Column(Date, nullable=False)
