@@ -73,3 +73,9 @@ class TimeLogService:
             start=create_time_log.start,
             end=create_time_log.end,
         )
+        self.session.add(timelog)
+        try:
+            self.session.commit()
+            return timelog
+        except IntegrityError:
+            raise EntityConflictError from None

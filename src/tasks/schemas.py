@@ -36,10 +36,13 @@ class TimeLog(BaseModel):
     id: int
     time_log_id: int
     start: date
-    end: date
+    end: Optional[date]
+
+    class Config:
+        orm_mode = True
 
 
 class TimeLogCreate(BaseModel):
     time_log_id: int
     start: date
-    end: date
+    end: Optional[date]
