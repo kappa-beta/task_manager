@@ -67,7 +67,7 @@ def edit_task(
 
 
 @router.post(
-    '/{task_id}/{time_log_id}',
+    '/{task_id}/time_log',
     response_model=TimeLogSchema,
     status_code=status.HTTP_201_CREATED,
 )
