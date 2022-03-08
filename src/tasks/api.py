@@ -72,11 +72,12 @@ def edit_task(
     status_code=status.HTTP_201_CREATED,
 )
 def create_time_log(
+        task_id: int,
         time_log_create: TimeLogCreate,
         service: TimeLogService = Depends(),
 ):
     try:
-        time_log = service.create_time_log(time_log_create)
+        time_log = service.create_time_log(task_id, time_log_create)
     except EntityConflictError:
         raise HTTPException(status.HTTP_409_CONFLICT) from None
     return time_log

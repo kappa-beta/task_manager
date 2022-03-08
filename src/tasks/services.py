@@ -67,9 +67,10 @@ class TimeLogService:
         self.session = session
         self.settings = settings
 
-    def create_time_log(self, create_time_log: TimeLogCreate):
+    def create_time_log(self, task_id: int, create_time_log: TimeLogCreate):
+        # create_time_log.time_log_id = task_id
         timelog = TimeLog(
-            time_log_id=create_time_log.time_log_id,
+            time_log_id=task_id,
             start=create_time_log.start,
             end=create_time_log.end,
         )
