@@ -80,3 +80,9 @@ class TimeLogService:
             return timelog
         except IntegrityError:
             raise EntityConflictError from None
+
+    def get_time_logs(self, task_id: int) -> TimeLog:
+        time_log = self.session.execute(
+            select(TimeLog).where(TimeLog.time_log_id == task_id)
+        ).scalars().all()
+        return time_log

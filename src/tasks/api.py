@@ -81,3 +81,17 @@ def create_time_log(
     except EntityConflictError:
         raise HTTPException(status.HTTP_409_CONFLICT) from None
     return time_log
+
+
+@router.get(
+    '/{task_id}/time_logs',
+    response_model=List[TimeLogSchema],
+)
+def get_time_logs(
+        task_id: int,
+        service: TimeLogService = Depends(),
+):
+    try:
+        return service.get_time_logs(task_id)
+    except EntityDoesNotExistError:
+        raise HTTPException(status.HTTP_404_NOT_FOUND) from None
