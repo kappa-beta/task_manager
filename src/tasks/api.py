@@ -3,7 +3,7 @@ from typing import List
 from fastapi import FastAPI, Depends, APIRouter, status, HTTPException
 
 from src.exceptions import EntityConflictError, EntityDoesNotExistError
-from src.tasks.schemas import TimeLog as TimeLogSchema, TimeLogCreate
+from src.tasks.schemas import TimeLog as TimeLogSchema, TimeLogCreate, TimeLogUpdate
 from src.tasks.schemas import Task as TaskSchema, TaskCreate, TaskUpdate
 from src.tasks.services import TaskService, TimeLogService
 
@@ -93,5 +93,21 @@ def get_time_logs(
 ):
     try:
         return service.get_time_logs(task_id)
+    except EntityDoesNotExistError:
+        raise HTTPException(status.HTTP_404_NOT_FOUND) from None
+
+
+@router.patch(
+    '/{task_id}/time_logs',
+    response_model=TimeLogSchema,
+)
+def edit_time_log(
+        task_id: int,
+        time_log_update: TimeLogUpdate,
+        service: TimeLogService = Depends(),
+):
+    try:
+        time_log = service.update_time_log(task_id, time_log_update)
+        return time_log
     except EntityDoesNotExistError:
         raise HTTPException(status.HTTP_404_NOT_FOUND) from None

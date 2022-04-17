@@ -46,3 +46,8 @@ class TimeLogCreate(BaseModel):
     # time_log_id: int
     start: date
     end: Optional[date]
+
+
+class TimeLogUpdate(BaseModel):
+    start: date | None = None
+    end: date

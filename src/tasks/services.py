@@ -6,7 +6,7 @@ from src.config import get_settings
 from src.database import get_session
 from src.exceptions import EntityConflictError, EntityDoesNotExistError
 from src.tasks.models import Task, TimeLog
-from src.tasks.schemas import TaskCreate, TaskUpdate, TimeLogCreate
+from src.tasks.schemas import TaskCreate, TaskUpdate, TimeLogCreate, TimeLogUpdate
 
 
 class TaskService:
@@ -85,4 +85,13 @@ class TimeLogService:
         time_log = self.session.execute(
             select(TimeLog).where(TimeLog.time_log_id == task_id)
         ).scalars().all()
+        return time_log
+
+    def update_time_log(self, task_id: int, time_log_update: TimeLogUpdate):
+        time_log = self.session.query(TimeLog).filter(TimeLog.time_log_id == task_id).order_by(
+            TimeLog.id.desc()).first()
+        for k, v in time_log_update.dict(exclude_unset=True).items():
+            setattr(time_log, k, v)
+
+        self.session.commit()
         return time_log
