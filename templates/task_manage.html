@@ -1,0 +1,137 @@
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Manage task</title>
+
+    <!--<link rel="canonical" href="https://getbootstrap.com/docs/5.1/examples/checkout/">-->
+
+    
+
+    <!-- Bootstrap core CSS -->
+<link href="{{ url_for('static', path='/css/bootstrap.css') }}" rel="stylesheet">
+
+    <style>
+      .bd-placeholder-img {
+        font-size: 1.125rem;
+        text-anchor: middle;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        user-select: none;
+      }
+
+      @media (min-width: 768px) {
+        .bd-placeholder-img-lg {
+          font-size: 3.5rem;
+        }
+      }
+    </style>
+
+    
+    <!-- Custom styles for this template -->
+    <link href="{{ url_for('static', path='/form-validation.css') }}" rel="stylesheet">
+  </head>
+  <body class="bg-light">
+    <div class="container">
+            <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                <div class="container-fluid">
+                    <a class="navbar-brand" href="/">Task Manager</a>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        <li class="nav-item">
+                            <a class="nav-link" href="/task_create">Создать задачу</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="#">Управление задачей</a>
+                        </li>
+                    </ul>
+                </div>
+                </div>
+            </nav>
+        </div>
+<div class="container">
+  <main>
+    <div class="text-center">
+      
+      <h2>Task manager</h2>
+      <p class="lead">Администрирование задачи</p>
+    </div>
+
+    <div class="row">
+      
+      <div class="col">
+        <h4 class="mb-3">Задача</h4>
+        <form class="needs-validation" novalidate="">
+          <div class="row">
+              <div class="mb-3">
+                <label for="exampleFormControlInput1" class="form-label">Название задачи</label>
+                <input type="text" class="form-control" id="exampleFormControlInput1">
+              </div>
+              <div class="mb-3">
+                <label for="exampleFormControlTextarea1" class="form-label">Описание задачи</label>
+                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+              </div>
+              
+              <div class="col-sm-6">
+                <label for="exampleFormControlInput1" class="form-label">План: начало</label>
+                <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="дд.мм.гг">
+              </div>
+              <div class="col-sm-6">
+                <label for="exampleFormControlInput1" class="form-label">План: конец</label>
+                <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="дд.мм.гг">
+              </div>
+              
+              <div class="mb-3">
+                <label for="exampleFormControlInput1" class="form-label">Исполнители</label>
+                <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Фамилия И. О.">
+              </div>
+              
+              <div class="d-grid gap-2">
+                <div class="w-100 btn-group" role="group" aria-label="Basic example">
+                  <button type="button" class="btn btn-primary">Старт</button>
+                  <button type="button" class="btn btn-primary">Пауза</button>
+                  <button type="button" class="btn btn-primary">Стоп</button>
+                </div>
+                  <button class="w-100 btn btn-primary" type="submit">Редактировать задачу</button>
+              </div>
+                  
+              <table class="table table-striped">
+                <thead>
+                  <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Начало</th>
+                    <th scope="col">Конец</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <th scope="row">1</th>
+                    <td><input type="text" class="form-control" placeholder="01.01.2022"></td>
+                    <td><input type="text" class="form-control" placeholder="02.01.2022"></td>
+                  </tr>
+                  <tr>
+                    <th scope="row">2</th>
+                    <td><input type="text" class="form-control" placeholder="01.02.2022"></td>
+                    <td><input type="text" class="form-control" placeholder="02.02.2022"></td>
+                  </tr>
+                  <tr>
+                    <th scope="row">3</th>
+                    <td><input type="text" class="form-control" placeholder="01.03.2022"></td>
+                    <td><input type="text" class="form-control" placeholder="02.03.2022"></td>
+                  </tr>
+                </tbody>
+              </table>
+          <hr class="my-4">
+          
+        </form>
+      </div>
+    </div>
+  </main>
+</div>
+
+      <script src="{{ url_for('static', path='/form-validation.js') }}"></script>
+  
+
+</body>
