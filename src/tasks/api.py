@@ -1,11 +1,17 @@
 from typing import List
 
-from fastapi import FastAPI, Depends, APIRouter, status, HTTPException
+from fastapi import FastAPI, Depends, APIRouter, status, HTTPException, Request
+
+from fastapi.responses import HTMLResponse
+
+from fastapi.templating import Jinja2Templates
 
 from src.exceptions import EntityConflictError, EntityDoesNotExistError
 from src.tasks.schemas import TimeLog as TimeLogSchema, TimeLogCreate, TimeLogUpdate
 from src.tasks.schemas import Task as TaskSchema, TaskCreate, TaskUpdate
 from src.tasks.services import TaskService, TimeLogService
+
+templates = Jinja2Templates(directory="../templates")
 
 router = APIRouter(
     prefix='/tasks',
@@ -111,3 +117,8 @@ def edit_time_log(
         return time_log
     except EntityDoesNotExistError:
         raise HTTPException(status.HTTP_404_NOT_FOUND) from None
+
+
+@router.get("/task_create", response_class=HTMLResponse)
+def read_create_task(request: Request):
+    return templates.TemplateResponse("task_create.html", {"request": request})
