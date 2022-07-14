@@ -13,6 +13,7 @@ from src.tasks.services import TaskService, TimeLogService
 
 templates = Jinja2Templates(directory="../templates")
 
+
 router = APIRouter(
     prefix='/tasks',
 )
@@ -119,6 +120,9 @@ def edit_time_log(
         raise HTTPException(status.HTTP_404_NOT_FOUND) from None
 
 
-@router.get("/task_create", response_class=HTMLResponse)
+@router.get(
+    '/task_create',
+    response_class=HTMLResponse,
+)
 def read_create_task(request: Request):
     return templates.TemplateResponse("task_create.html", {"request": request})
