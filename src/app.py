@@ -1,12 +1,16 @@
 from fastapi import FastAPI
+
 from tasks import api as task_api
+from other import api as other_api
 from fastapi.staticfiles import StaticFiles
-# from fastapi.templating import Jinja2Templates
+
+from fastapi.templating import Jinja2Templates
 
 app = FastAPI()
 
 app.mount("/static", StaticFiles(directory="./static"), name="static")
-# templates = Jinja2Templates(directory="./templates")
+
+templates = Jinja2Templates(directory="../templates")
 
 
 @app.get("/")
@@ -15,3 +19,4 @@ def root():
 
 
 task_api.init_tasks(app)
+other_api.init_other(app)
