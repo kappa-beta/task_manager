@@ -10,7 +10,7 @@ formElem.onsubmit = async (e) => {
 	var json = JSON.stringify(object);
 	console.log(json);
 
-	let response = await fetch('/other/', {
+	let response = await fetch('/tasks/', {
 	method: 'POST',
 		headers: {
 			'Accept': 'application/json',

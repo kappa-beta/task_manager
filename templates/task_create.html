@@ -67,29 +67,29 @@
           <div class="row">
               <div class="mb-3">
                 <label for="exampleFormControlInput1" class="form-label">Название задачи</label>
-                <input type="text" class="form-control" id="exampleFormControlInput1">
+                <input type="text" class="form-control" id="exampleFormControlInput1" name="header">
               </div>
               <div class="mb-3">
                 <label for="exampleFormControlTextarea1" class="form-label">Описание задачи</label>
-                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="description"></textarea>
               </div>
               
               <div class="col-sm-6">
                 <label for="exampleFormControlInput1" class="form-label">План: начало</label>
-                <input type="text" class="form-control" id="exampleFormControlInput2" placeholder="дд.мм.гг">
+                <input type="text" class="form-control" id="exampleFormControlInput2" placeholder="дд.мм.гг" name="plan_start">
               </div>
               <div class="col-sm-6">
                 <label for="exampleFormControlInput1" class="form-label">План: конец</label>
-                <input type="text" class="form-control" id="exampleFormControlInput3" placeholder="дд.мм.гг">
+                <input type="text" class="form-control" id="exampleFormControlInput3" placeholder="дд.мм.гг" name="plan_end">
               </div>
               
               <div class="mb-3">
                 <label for="exampleFormControlInput1" class="form-label">Исполнители</label>
-                <input type="text" class="form-control" id="exampleFormControlInput4" placeholder="Фамилия И. О.">
+                <input type="text" class="form-control" id="exampleFormControlInput4" placeholder="Фамилия И. О." name="executors">
               </div>
           </div>
           <hr class="my-4">
-          <button class="w-100 btn btn-primary btn-lg" type="submit">Создать задачу</button>
+          <button class="w-100 btn btn-primary btn-lg" form="formElem" type="submit">Создать задачу</button>
         </form>
       </div>
     </div>
@@ -97,7 +97,7 @@
 </div>
 
 
-
+<script src="{{ url_for('static', path='/post.js') }}"></script>
 <script src="{{ url_for('static', path='/form-validation.js') }}"></script>
 
   
