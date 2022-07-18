@@ -1,3 +1,5 @@
+let tasks_task_create = '/tasks/';
+
 formElem.onsubmit = async (e) => {
 	e.preventDefault();
 
@@ -10,7 +12,7 @@ formElem.onsubmit = async (e) => {
 	var json = JSON.stringify(object);
 	console.log(json);
 
-	let response = await fetch('/tasks/', {
+	let response = await fetch(tasks_task_create, {
 	method: 'POST',
 		headers: {
 			'Accept': 'application/json',

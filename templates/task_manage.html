@@ -67,25 +67,25 @@
           <div class="row">
               <div class="mb-3">
                 <label for="exampleFormControlInput1" class="form-label">Название задачи</label>
-                <input type="text" class="form-control" id="exampleFormControlInput1">
+                <input type="text" class="form-control" id="exampleFormControlInput1" name="header" value="{{ result.header }}">
               </div>
               <div class="mb-3">
                 <label for="exampleFormControlTextarea1" class="form-label">Описание задачи</label>
-                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="description">{{ result.description }}</textarea>
               </div>
-              
+
               <div class="col-sm-6">
                 <label for="exampleFormControlInput1" class="form-label">План: начало</label>
-                <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="дд.мм.гг">
+                <input type="text" class="form-control" id="exampleFormControlInput2" name="plan_start" value="{{ result.plan_start }}">
               </div>
               <div class="col-sm-6">
                 <label for="exampleFormControlInput1" class="form-label">План: конец</label>
-                <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="дд.мм.гг">
+                <input type="text" class="form-control" id="exampleFormControlInput3" name="plan_end" value="{{ result.plan_end }}">
               </div>
-              
+
               <div class="mb-3">
                 <label for="exampleFormControlInput1" class="form-label">Исполнители</label>
-                <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Фамилия И. О.">
+                <input type="text" class="form-control" id="exampleFormControlInput4" name="executors" value="{{ result.executors }}">
               </div>
               
               <div class="d-grid gap-2">
@@ -96,7 +96,7 @@
                 </div>
                   <button class="w-100 btn btn-primary" type="submit">Редактировать задачу</button>
               </div>
-                  
+          </div>
               <table class="table table-striped">
                 <thead>
                   <tr>
