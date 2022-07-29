@@ -29,8 +29,16 @@ class TaskService:
         except IntegrityError:
             raise EntityConflictError from None
 
-    def get_task(self, task_id: int) -> Task:
-        return self._get_task(task_id)
+    # def get_task(self, task_id: int) -> {"task": Task, "time_log": List[TimeLog]}:
+    def get_task(self, task_id: int):
+        time_logs = self.session.execute(
+            select(Task)
+                .where(Task.id == task_id)
+        ).scalar_one().time_log
+        # print(time_logs)
+        result = {"task": self._get_task(task_id), "time_log": time_logs}
+        # return self._get_task(task_id)
+        return result
 
     def get_tasks(self) -> Task:
         tasks = self.session.execute(
@@ -57,6 +65,7 @@ class TaskService:
                 select(Task)
                     .where(Task.id == task_id)
             ).scalar_one()
+            # print(task)
             return task
         except NoResultFound:
             raise EntityDoesNotExistError from None

@@ -1,7 +1,17 @@
-from typing import Optional
+from typing import Optional, List
 from datetime import date
 
 from pydantic import BaseModel
+
+
+class TimeLog(BaseModel):
+    id: int
+    time_log_id: int
+    start: date
+    end: Optional[date]
+
+    class Config:
+        orm_mode = True
 
 
 class Task(BaseModel):
@@ -11,6 +21,7 @@ class Task(BaseModel):
     plan_start: Optional[date]
     plan_end: Optional[date]
     executors: Optional[str]
+    time_log: Optional[List[TimeLog]]
 
     class Config:
         orm_mode = True
@@ -32,14 +43,14 @@ class TaskUpdate(BaseModel):
     executors: Optional[str] = None
 
 
-class TimeLog(BaseModel):
-    id: int
-    time_log_id: int
-    start: date
-    end: Optional[date]
-
-    class Config:
-        orm_mode = True
+# class TimeLog(BaseModel):
+#     id: int
+#     time_log_id: int
+#     start: date
+#     end: Optional[date]
+#
+#     class Config:
+#         orm_mode = True
 
 
 class TimeLogCreate(BaseModel):

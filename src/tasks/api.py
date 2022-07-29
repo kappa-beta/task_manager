@@ -48,7 +48,7 @@ def read_create_task(request: Request):
 @router.get(
     '/{task_id}',
     response_class=HTMLResponse,
-    response_model=TaskSchema,
+    # response_model=TaskSchema,
 )
 def get_task(
         task_id: int,
@@ -57,6 +57,7 @@ def get_task(
 ):
     try:
         result = service.get_task(task_id)
+        print(result)
         return templates.TemplateResponse("task_manage.html", {"request": request, "result": result})
     except EntityDoesNotExistError:
         raise HTTPException(status.HTTP_404_NOT_FOUND) from None
