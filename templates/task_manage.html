@@ -106,23 +106,13 @@
                   </tr>
                 </thead>
                 <tbody>
-                {% for _ in result['timelog'] %}
+                {% for _ in result['time_log'] %}
                   <tr>
-                    <th scope="row">1</th>
+                    <th scope="row">{{ loop.index }}</th>
                     <td><input type="text" class="form-control" placeholder="{{ _.start }}"></td>
                     <td><input type="text" class="form-control" placeholder="{{ _.end }}"></td>
                   </tr>
                 {% endfor %}
-                  <tr>
-                    <th scope="row">2</th>
-                    <td><input type="text" class="form-control" placeholder="01.02.2022"></td>
-                    <td><input type="text" class="form-control" placeholder="02.02.2022"></td>
-                  </tr>
-                  <tr>
-                    <th scope="row">3</th>
-                    <td><input type="text" class="form-control" placeholder="01.03.2022"></td>
-                    <td><input type="text" class="form-control" placeholder="02.03.2022"></td>
-                  </tr>
                 </tbody>
               </table>
           <hr class="my-4">

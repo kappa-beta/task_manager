@@ -1,3 +1,4 @@
+from typing import Dict, List
 from fastapi import Depends
 from sqlalchemy import select
 from sqlalchemy.exc import IntegrityError, NoResultFound
@@ -29,8 +30,8 @@ class TaskService:
         except IntegrityError:
             raise EntityConflictError from None
 
-    # def get_task(self, task_id: int) -> {"task": Task, "time_log": List[TimeLog]}:
-    def get_task(self, task_id: int):
+    def get_task(self, task_id: int) -> Dict[str, Task | List[TimeLog]]:
+        # def get_task(self, task_id: int):
         time_logs = self.session.execute(
             select(Task)
                 .where(Task.id == task_id)
