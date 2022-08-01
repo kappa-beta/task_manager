@@ -77,12 +77,27 @@ def get_task(
 #         raise HTTPException(status.HTTP_404_NOT_FOUND) from None
 
 
-@router.get('', response_model=List[TaskSchema])
+# @router.get('', response_model=List[TaskSchema])
+# def get_tasks(
+#         service: TaskService = Depends(),
+# ):
+#     try:
+#         return service.get_tasks()
+#     except EntityDoesNotExistError:
+#         raise HTTPException(status.HTTP_404_NOT_FOUND) from None
+
+@router.get(
+    '',
+    response_class=HTMLResponse,
+    response_model=List[TaskSchema],
+)
 def get_tasks(
+        request: Request,
         service: TaskService = Depends(),
 ):
     try:
-        return service.get_tasks()
+        result = service.get_tasks()
+        return templates.TemplateResponse("task_list.html", {"request": request, "result": result})
     except EntityDoesNotExistError:
         raise HTTPException(status.HTTP_404_NOT_FOUND) from None
 

@@ -36,7 +36,7 @@
     <div class="container">
             <nav class="navbar navbar-expand-lg navbar-light bg-light">
                 <div class="container-fluid">
-                    <a class="navbar-brand" href="/">Task Manager</a>
+                    <a class="navbar-brand" href="/tasks/">Task Manager</a>
                     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
                     </button>
@@ -74,22 +74,16 @@
     </tr>
   </thead>
   <tbody>
+  {% for _ in result %}
     <tr>
-      <th scope="row">1</th>
-      <td><a href="#" class="list-group-item list-group-item-action">Задача 1</a></td>
-      <td>01.01.2022</td>
-      <td>02.01.2022</td>
-      <td>Иванов И.</td>
+      <th scope="row">{{ loop.index }}</th>
+      <td><a href="/tasks/{{ _.id }}" class="list-group-item list-group-item-action">{{ _.header }}</a></td>
+      <td>{{ _.plan_start }}</td>
+      <td>{{ _.plan_end }}</td>
+      <td>{{ _.executors }}</td>
       <td>Выполняется</td>
     </tr>
-    <tr>
-      <th scope="row">1</th>
-      <td><a href="#" class="list-group-item list-group-item-action">Задача 2</a></td>
-      <td>15.03.2022</td>
-      <td>05.04.2022</td>
-      <td>Иванов И.</td>
-      <td>Выполняется</td>
-    </tr>
+  {% endfor %}
   </tbody>
 </table>
 

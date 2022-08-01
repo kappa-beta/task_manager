@@ -34,7 +34,7 @@
     <div class="container">
             <nav class="navbar navbar-expand-lg navbar-light bg-light">
                 <div class="container-fluid">
-                    <a class="navbar-brand" href="/">Task Manager</a>
+                    <a class="navbar-brand" href="/tasks/">Task Manager</a>
                     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
                     </button>
@@ -109,8 +109,8 @@
                 {% for _ in result['time_log'] %}
                   <tr>
                     <th scope="row">{{ loop.index }}</th>
-                    <td><input type="text" class="form-control" placeholder="{{ _.start }}"></td>
-                    <td><input type="text" class="form-control" placeholder="{{ _.end }}"></td>
+                    <td><input type="text" class="form-control" value="{{ _.start }}"></td>
+                    <td><input type="text" class="form-control" value="{{ _.end }}"></td>
                   </tr>
                 {% endfor %}
                 </tbody>
