@@ -102,7 +102,10 @@ def get_tasks(
         raise HTTPException(status.HTTP_404_NOT_FOUND) from None
 
 
-@router.patch('/{task_id}', response_model=TaskSchema)
+@router.patch(
+    '/{task_id}',
+    response_model=TaskSchema,
+)
 def edit_task(
         task_id: int,
         task_update: TaskUpdate,
@@ -113,6 +116,22 @@ def edit_task(
         return task
     except EntityDoesNotExistError:
         raise HTTPException(status.HTTP_404_NOT_FOUND) from None
+
+
+# @router.patch(
+#     '/{task_id}',
+#     response_model=TaskSchema,
+# )
+# def edit_task(
+#         task_id: int,
+#         task_update: TaskUpdate,
+#         service: TaskService = Depends(),
+# ):
+#     try:
+#         task = service.update_task(task_id, task_update)
+#         return task
+#     except EntityDoesNotExistError:
+#         raise HTTPException(status.HTTP_404_NOT_FOUND) from None
 
 
 @router.post(
