@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -54,16 +55,16 @@
 <div class="container">
   <main>
     <div class="text-center">
-      
+
       <h2>Task manager</h2>
       <p class="lead">Администрирование задачи</p>
     </div>
 
     <div class="row">
-      
+
       <div class="col">
         <h4 class="mb-3">Задача</h4>
-        <form class="needs-validation" novalidate="">
+        <form class="needs-validation" novalidate="" id="formElemEdit">
           <div class="row">
               <div class="mb-3">
                 <label for="exampleFormControlInput1" class="form-label">Название задачи</label>
@@ -87,7 +88,7 @@
                 <label for="exampleFormControlInput1" class="form-label">Исполнители</label>
                 <input type="text" class="form-control" id="exampleFormControlInput4" name="executors" value="{{ result['task'].executors }}">
               </div>
-              
+
               <div class="d-grid gap-2">
                 <div class="w-100 btn-group" role="group" aria-label="Basic example">
                   <button type="button" class="btn btn-primary">Старт</button>
@@ -97,6 +98,8 @@
                   <button class="w-100 btn btn-primary" type="submit">Редактировать задачу</button>
               </div>
           </div>
+          </form>
+
               <table class="table table-striped">
                 <thead>
                   <tr>
@@ -116,14 +119,14 @@
                 </tbody>
               </table>
           <hr class="my-4">
-          
-        </form>
+          </div>
+
       </div>
-    </div>
   </main>
 </div>
 
-      <script src="{{ url_for('static', path='/form-validation.js') }}"></script>
+<script src="{{ url_for('static', path='/patch.js') }}"></script>
+<script src="{{ url_for('static', path='/form-validation.js') }}"></script>
   
 
 </body>
