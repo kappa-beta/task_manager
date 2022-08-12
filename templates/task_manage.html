@@ -91,7 +91,7 @@
 
               <div class="d-grid gap-2">
                 <div class="w-100 btn-group" role="group" aria-label="Basic example">
-                  <button type="button" class="btn btn-primary">Старт</button>
+                  <button type="button" class="btn btn-primary" onclick="sendJSON()">Старт</button>
                   <button type="button" class="btn btn-primary">Пауза</button>
                   <button type="button" class="btn btn-primary">Стоп</button>
                 </div>
@@ -126,6 +126,7 @@
 </div>
 
 <script src="{{ url_for('static', path='/patch.js') }}"></script>
+<script src="{{ url_for('static', path='/time_log.js') }}"></script>
 <script src="{{ url_for('static', path='/form-validation.js') }}"></script>
   
 
