@@ -166,7 +166,7 @@ def get_time_logs(
 
 
 @router.patch(
-    '/{task_id}/time_logs',
+    '/{task_id}/time_log',
     response_model=TimeLogSchema,
 )
 def edit_time_log(
