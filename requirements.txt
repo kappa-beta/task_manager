@@ -4,3 +4,6 @@ alembic
 sqlalchemy
 dynaconf
 jinja2
+passlib
+jwt
+python-jose
