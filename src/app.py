@@ -1,6 +1,8 @@
 from fastapi import FastAPI
 
 from tasks import api as task_api
+from accounts import api as account_api
+from auth import auth as auth_api
 from other import api as other_api
 from fastapi.staticfiles import StaticFiles
 
@@ -19,4 +21,6 @@ def root():
 
 
 task_api.init_tasks(app)
-other_api.init_other(app)
+account_api.init_accounts(app)
+auth_api.init_auth(app)
+# other_api.init_other(app)

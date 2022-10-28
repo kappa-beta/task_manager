@@ -6,6 +6,8 @@ from fastapi.responses import HTMLResponse
 from fastapi.templating import Jinja2Templates
 
 from src.accounts.schemas import Account
+from src.auth.dependencies import get_current_account
+from src.auth.schemas import AuthAccount
 from src.exceptions import EntityConflictError, EntityDoesNotExistError
 from src.tasks.schemas import TimeLog as TimeLogSchema, TimeLogCreate, TimeLogUpdate
 from src.tasks.schemas import Task as TaskSchema, TaskCreate, TaskUpdate
@@ -29,7 +31,7 @@ def init_tasks(app: FastAPI):
 )
 def create_task(
         task_create: TaskCreate,
-        current_account: Account = Depends(get_current_account),
+        current_account: AuthAccount = Depends(get_current_account),
         service: TaskService = Depends(),
 ):
     try:

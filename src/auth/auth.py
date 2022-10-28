@@ -1,4 +1,4 @@
-from fastapi import APIRouter
+from fastapi import APIRouter, FastAPI
 from fastapi import Depends
 from fastapi import Form
 from fastapi import HTTPException
@@ -7,18 +7,21 @@ from fastapi.security import OAuth2PasswordRequestForm
 
 from .schemas import Token
 from .services import AuthService
-from ..exceptions import EntityDoesNotExistError
-
+from src.exceptions import EntityDoesNotExistError
 
 router = APIRouter(
     prefix='/auth',
 )
 
 
+def init_auth(app: FastAPI):
+    app.include_router(router)
+
+
 @router.post('/login', response_model=Token)
 def login(
-    credentials: OAuth2PasswordRequestForm = Depends(),
-    auth_service: AuthService = Depends(),
+        credentials: OAuth2PasswordRequestForm = Depends(),
+        auth_service: AuthService = Depends(),
 ):
     try:
         return auth_service.authenticate(credentials.username, credentials.password)
@@ -28,8 +31,8 @@ def login(
 
 @router.post('/token')
 def token(
-    refresh_token: str = Form(...),
-    auth_service: AuthService = Depends(),
+        refresh_token: str = Form(...),
+        auth_service: AuthService = Depends(),
 ):
     try:
         return auth_service.refresh_token_pair(refresh_token)

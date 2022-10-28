@@ -1,5 +1,6 @@
 from typing import List
 
+from fastapi import FastAPI
 from fastapi import APIRouter
 from fastapi import Depends
 from fastapi import HTTPException
@@ -8,15 +9,18 @@ from fastapi import status
 from .schemas import Account as AccountSchema
 from .schemas import AccountCreate
 from .services import AccountService
-from ..auth.dependencies import get_current_account
-from ..auth.schemas import AuthAccount
-from ..exceptions import EntityConflictError
-from ..exceptions import EntityDoesNotExistError
-
+from src.auth.dependencies import get_current_account
+from src.auth.schemas import AuthAccount
+from src.exceptions import EntityConflictError
+from src.exceptions import EntityDoesNotExistError
 
 router = APIRouter(
     prefix='/accounts',
 )
+
+
+def init_accounts(app: FastAPI):
+    app.include_router(router)
 
 
 @router.post(
@@ -25,8 +29,8 @@ router = APIRouter(
     status_code=status.HTTP_201_CREATED,
 )
 def create_account(
-    account_create: AccountCreate,
-    service: AccountService = Depends(),
+        account_create: AccountCreate,
+        service: AccountService = Depends(),
 ):
     try:
         account = service.create_account(account_create)
@@ -37,17 +41,17 @@ def create_account(
 
 @router.get('', response_model=List[AccountSchema])
 def get_accounts(
-    current_account: AuthAccount = Depends(get_current_account),
-    service: AccountService = Depends(),
+        current_account: AuthAccount = Depends(get_current_account),
+        service: AccountService = Depends(),
 ):
     return service.get_accounts()
 
 
 @router.get('/{account_id}', response_model=AccountSchema)
 def get_account(
-    account_id: int,
-    current_account: AuthAccount = Depends(get_current_account),
-    service: AccountService = Depends(),
+        account_id: int,
+        current_account: AuthAccount = Depends(get_current_account),
+        service: AccountService = Depends(),
 ):
     try:
         return service.get_account(account_id)

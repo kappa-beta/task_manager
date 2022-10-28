@@ -9,10 +9,10 @@ from sqlalchemy.exc import NoResultFound
 
 from .models import RefreshToken
 from .schemas import Token
-from ..accounts.models import Account
-from ..config import get_settings
-from ..database import get_session
-from ..exceptions import EntityDoesNotExistError
+from src.accounts.models import Account
+from src.config import get_settings
+from src.database import get_session
+from src.exceptions import EntityDoesNotExistError
 
 
 class AuthService:

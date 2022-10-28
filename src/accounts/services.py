@@ -6,10 +6,10 @@ from sqlalchemy import select
 from sqlalchemy.exc import IntegrityError
 from sqlalchemy.exc import NoResultFound
 
-from ..config import get_settings
-from ..database import get_session
-from ..exceptions import EntityConflictError
-from ..exceptions import EntityDoesNotExistError
+from src.config import get_settings
+from src.database import get_session
+from src.exceptions import EntityConflictError
+from src.exceptions import EntityDoesNotExistError
 from .models import Account
 from .schemas import AccountCreate
 from .schemas import AccountUpdate
@@ -59,7 +59,7 @@ class AccountService:
         try:
             account = self.session.execute(
                 select(Account)
-                    .where(Account.id == account_id)
+                .where(Account.id == account_id)
             ).scalar_one()
             return account
         except NoResultFound:

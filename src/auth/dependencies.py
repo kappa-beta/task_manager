@@ -7,7 +7,7 @@ from jose import jwt
 from pydantic import ValidationError
 
 from .schemas import AuthAccount
-from ..config import get_settings
+from src.config import get_settings
 
 oauth2_scheme = OAuth2PasswordBearer(tokenUrl='/accounts/login')
 

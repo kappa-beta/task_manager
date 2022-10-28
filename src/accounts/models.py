@@ -1,10 +1,11 @@
 from sqlalchemy import Column, Integer, String
 
-from ..database import Base
+from src.database import Base
 
 
 class Account(Base):
     __tablename__ = 'accounts'
+    __table_args__ = {'extend_existing': True}
 
     id = Column(Integer, primary_key=True)
     email = Column(String, nullable=False)
