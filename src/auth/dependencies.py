@@ -9,7 +9,7 @@ from pydantic import ValidationError
 from .schemas import AuthAccount
 from src.config import get_settings
 
-oauth2_scheme = OAuth2PasswordBearer(tokenUrl='/accounts/login')
+oauth2_scheme = OAuth2PasswordBearer(tokenUrl='/auth/login')
 
 
 def get_current_account(
